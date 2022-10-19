@@ -1,27 +1,25 @@
 const express = require("express");
-const cookieSession = require("cookie-session");
-const passport = require("passport");
+const mongoose = require("mongoose");
 const cors = require("cors");
+const dotenv = require("dotenv");
+const authRoute = require("./routes/auth");
 
 const app = express();
-
-app.use(
-	cookieSession({
-		name: "session",
-		keys: ["secret-key"],
-		maxAge: 24 * 60 * 60 * 100,
-	})
-);
-app.use(passport.initialize());
-app.use(passport.session());
+dotenv.config();
+app.use(express.json());
 
 app.use(
 	cors({
 		origin: "http://127.0.0.1:5173/",
-		methods: ["GET", "POST", "PUT", "DELETE"],
-		credentials: true,
 	})
 );
+
+mongoose
+	.connect(process.env.MONGO)
+	.then(console.log("Succesfully Connected to database."))
+	.catch((err) => console.error(err));
+
+app.use("/", authRoute);
 
 app.listen(5000, () => {
 	console.log("listening on port 5000");
