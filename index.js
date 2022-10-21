@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const passportSetup = require("./passport");
+const path = require("path");
 
 const app = express();
 dotenv.config();
