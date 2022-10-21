@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "heroku-postbuild": "cd client && yarn add && yarn build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.1.3",
