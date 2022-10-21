@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const User = require("../models/User");
 
-const CLIENT_URL = "http://localhost:5173/";
+const CLIENT_URL = "https://auth-system-skill-test.herokuapp.com/";
 
 //register route
 router.post("/v1/signup", async (req, res) => {
@@ -18,10 +18,9 @@ router.post("/v1/signup", async (req, res) => {
 //login route
 router.get("/v1/login", async (req, res) => {
 	try {
-		const user = await User.findOne({ email: req.body.email });
-		console.log(user);
+		const user = await User.findOne({ email: req.query.email });
 		if (user) {
-			if (req.body.password === user.password) {
+			if (req.query.password === user.password) {
 				res.status(200).json(user);
 			} else {
 				res.status(401).json("Wrong Credintials.");
@@ -46,8 +45,8 @@ router.get("/login/success", (req, res) => {
 		if (req.user.provider == "google") {
 			const userData = req.user._json;
 			const user = {
-				firstName: userData.given_name,
-				lastName: userData.family_name,
+				firstname: userData.given_name,
+				lastname: userData.family_name,
 				email: userData.email,
 				profilePic: userData.picture,
 			};
@@ -55,8 +54,8 @@ router.get("/login/success", (req, res) => {
 		} else if (req.user.provider == "facebook") {
 			const userData = req.user._json;
 			const user = {
-				firstName: userData.first_name,
-				lastName: userData.last_name,
+				firstname: userData.first_name,
+				lastname: userData.last_name,
 				email: userData.email,
 				profilePic: userData.picture.data.url,
 			};

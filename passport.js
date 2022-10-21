@@ -10,7 +10,8 @@ passport.use(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: "http://localhost:5000/auth/google/callback",
+			callbackURL:
+				"https://auth-system-skill-test.herokuapp.com/auth/google/callback",
 		},
 		function (accessToken, refreshToken, profile, done) {
 			done(null, profile);
@@ -23,7 +24,8 @@ passport.use(
 		{
 			clientID: process.env.FACEBOOK_APP_ID,
 			clientSecret: process.env.FACEBOOK_APP_SECRET,
-			callbackURL: "http://localhost:5000/auth/facebook/callback",
+			callbackURL:
+				"https://auth-system-skill-test.herokuapp.com/auth/facebook/callback",
 			profileFields: [
 				"first_name",
 				"last_name",
