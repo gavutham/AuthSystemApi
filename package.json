@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd client && yarn add && yarn build"
+    "heroku-postbuild": "cd client && yarn && yarn build"
   },
   "dependencies": {
     "cookie-session": "^2.0.0",
